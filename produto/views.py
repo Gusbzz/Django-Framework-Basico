@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Pessoa
 
 def ver_produto(request):
     if request.method == "GET":
@@ -8,6 +9,11 @@ def ver_produto(request):
     elif request.method == "POST":
         nome = request.POST.get('nome')
         idade = request.POST.get('idade')
+
+    pessoas = Pessoa.objects.all()
+    print(pessoas)
+
+    return HttpResponse(pessoas)
 
 def inserir_produto(request):
     return HttpResponse('Estou no inserir')
